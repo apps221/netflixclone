@@ -5,6 +5,7 @@ import search_icon from '../../assets/assets/search_icon.svg'
 import bell_icon from '../../assets/assets/bell_icon.svg'
 import profile from '../../assets/assets/profile_img.png'
 import dropdown from '../../assets/assets/caret_icon.svg'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <div className='navbar'>
@@ -20,7 +21,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-right">
-        <img src={search_icon} alt="" className='icons'/>
+       <Link to="/search"><img src={search_icon} alt="" className='icons'/></Link>
         <p>Children</p>
         <img src={bell_icon} alt="" className='icons'/>
         <div className="navbar-profile">
