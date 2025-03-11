@@ -60,7 +60,7 @@ const handleKeyDown = (event) => {
     </div>
     <div className="search-right">
 <div className="card-list-search">
-  {loading ? <Loading /> : {searchResults.length > 0 ? (
+  {loading ? (<Loading />) : searchResults.length > 0 ? (
 searchResults.map((card) => (
  <Link to={`/player/${card.id}`} className="card" key={card.id}>
   <img src={
@@ -76,8 +76,6 @@ searchResults.map((card) => (
   ) : (
     <h1>No results for "{searchQuery}"</h1>
   )}
-
-}
   
 </div>
     </div>
