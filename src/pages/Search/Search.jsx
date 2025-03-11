@@ -9,33 +9,30 @@ const Search = () => {
 const [inputValue, setInputValue] = useState('');
 const [searchQuery, setSearchQuery] = useState('');
 const [searchResults, setSearchResults] = useState([])
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSearch();
+  }
+};
   useEffect(() => {
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleSearch();
-        }
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTI5MzY0ZGEwMjBjYmQ1NTJjZWFiZTYyZGVkMjUyMSIsIm5iZiI6MTczOTM3NzIyMS43NzcsInN1YiI6IjY3YWNjYTQ1NTMzNTNmOWJiYTM2Y2RhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I8F4L_AtRzIdNatpsmHwnkuCewA8DNupLsRk1JZ1E58'
+      }
     };
-    document.addEventListener("keydown", handleKeyDown)
-    return () => {
-        document.removeEventListener("keydown", handleKeyDown)
-    }
-}, [searchQuery]) //every time search value changes it reruns
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTI5MzY0ZGEwMjBjYmQ1NTJjZWFiZTYyZGVkMjUyMSIsIm5iZiI6MTczOTM3NzIyMS43NzcsInN1YiI6IjY3YWNjYTQ1NTMzNTNmOWJiYTM2Y2RhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I8F4L_AtRzIdNatpsmHwnkuCewA8DNupLsRk1JZ1E58'
-    }
-  };
-  
-    const handleSearch = async () => {
     if(searchQuery) {
       fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options)
         .then(res => res.json())
         .then(res => setSearchResults(res.results))
         .catch(err => console.error(err));
       }
+}, [searchQuery]) //every time search value changes it reruns
+  
+    const handleSearch = async () => {
+    setSearchQuery(inputValue)
     }
   return (
     <div className="search">
