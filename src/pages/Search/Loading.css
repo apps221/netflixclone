@@ -18,21 +18,17 @@
     max-width: 240px;
     width: 100%;
     height: 150px;
-    background-color: gray;
+    background: rgba(0, 0, 0, 0) linear-gradient(90deg, rgb(224, 224, 224) 25%, rgb(240, 240, 240) 50%, rgb(224, 224, 224) 75%) repeat scroll -137.76% 0px / 200% 100% padding-box border-box;
     border-radius: 4px;
-    animation: pulse 1.5s infinite linear;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
   }
   
-  @keyframes pulse {
-    0% {
-        transform: scale(.9);
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
     }
-
-    50% {
-        transform: scale(1);
+    to {
+      background-position: -200% 0;
     }
-
-    100% {
-        transform: scale(.9);
-    }
-}
+  }
