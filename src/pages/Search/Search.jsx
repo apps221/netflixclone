@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 
 
 const Search = () => {
-  const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([])
+const [inputValue, setInputValue] = useState('');
+const [searchQuery, setSearchQuery] = useState('');
+const [searchResults, setSearchResults] = useState([])
   useEffect(() => {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -19,7 +20,7 @@ const Search = () => {
     return () => {
         document.removeEventListener("keydown", handleKeyDown)
     }
-}, [search]) //every time search value changes it reruns
+}, [searchQuery]) //every time search value changes it reruns
   const options = {
     method: 'GET',
     headers: {
@@ -29,8 +30,8 @@ const Search = () => {
   };
   
     const handleSearch = async () => {
-    if(search) {
-      fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=1`, options)
+    if(searchQuery) {
+      fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options)
         .then(res => res.json())
         .then(res => setSearchResults(res.results))
         .catch(err => console.error(err));
@@ -41,7 +42,7 @@ const Search = () => {
     <div className='search-left'>
        <div className="searchbar">
         <input type="search" className='searchTerm' placeholder='Search' name="fname" autoFocus required
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}/>
+        onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}/>
         <button type='submit' className='searchButton' onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
        </button>
@@ -58,7 +59,7 @@ const Search = () => {
           )
         })} : 
         return (
-          <h1>No Results for {search}</h1>
+          <h1>No Results for {searchQuery}</h1>
         )}
 
 </div>
