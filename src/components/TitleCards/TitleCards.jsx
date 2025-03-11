@@ -16,6 +16,7 @@ const TitleCards = ({title, category}) => {
     .then(res => res.json())
     .then(res => setApiData(res.results))
     .catch(err => console.error(err));
+    
   },[])
  
  
