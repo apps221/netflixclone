@@ -29,9 +29,17 @@ const handleKeyDown = (event) => {
       setLoading(true);
       fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options)
         .then(res => res.json())
-        .then(res => setSearchResults(res.results))
-        .catch(err => console.error(err));
-        setLoading(false)
+        .then(res => {
+
+          setSearchResults(res.results);
+          setLoading(false);
+          
+          })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+        });
+      
       }
 }, [searchQuery]) //every time search value changes it reruns
   
@@ -45,16 +53,15 @@ const handleKeyDown = (event) => {
         <input type="search" className='searchTerm' placeholder='Search' name="fname" autoFocus required
         onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
         <button type='submit' className='searchButton' onClick={handleSearch}>
-        { loading ? <Loading /> : null}
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        { loading ? <Loading /> :
+        <FontAwesomeIcon icon={faMagnifyingGlass} />}
        </button>
        </div>
     </div>
     <div className="search-right">
 <div className="card-list-search">
-  {searchResults.length > 0 ? (
+  {loading ? <Loading /> : {searchResults.length > 0 ? (
 searchResults.map((card) => (
- 
  <Link to={`/player/${card.id}`} className="card" key={card.id}>
   <img src={
                     card.backdrop_path
@@ -70,7 +77,8 @@ searchResults.map((card) => (
     <h1>No results for "{searchQuery}"</h1>
   )}
 
-
+}
+  
 </div>
     </div>
     </div>

@@ -12,11 +12,16 @@
     border-right: 2px dotted gray ;
 }
 .box {
-    width: 240px;
-    height: 150px;
+    width: 260px;
+    height: 180px;
     background-color: gray;
 }
 .skeleton-right {
     padding-left: 10px;
     width: 70%;
+    display: grid;
+    grid-template-columns: repeat(4, 260px);
+    grid-template-rows: repeat(5, 180px);
+    gap: 10px;
+    padding: 20px;
 }
