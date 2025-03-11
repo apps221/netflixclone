@@ -3,20 +3,15 @@
     gap: 10px;
     padding: 20px;
   }
-  .search-half {
-    width: 30%;
-    height: 95vh;
-  }
   .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
+    width: 100%;
     gap: 10px;
     height: 95vh;
   }
   .skeleton-card {
-    max-width: 240px;
-    width: 100%;
+     width: 240px;
     height: 150px;
     background: rgba(0, 0, 0, 0) linear-gradient(90deg, rgb(224, 224, 224) 25%, rgb(240, 240, 240) 50%, rgb(224, 224, 224) 75%) repeat scroll -137.76% 0px / 200% 100% padding-box border-box;
     border-radius: 4px;

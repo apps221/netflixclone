@@ -27,6 +27,7 @@ const handleKeyDown = (event) => {
     };
     if(searchQuery) {
       setLoading(true);
+      setTimeout(() => {
       fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options)
         .then(res => res.json())
         .then(res => {
@@ -39,7 +40,7 @@ const handleKeyDown = (event) => {
           console.error(err);
           setLoading(false);
         });
-      
+      }, 5000)
       }
 }, [searchQuery]) //every time search value changes it reruns
   
@@ -53,14 +54,13 @@ const handleKeyDown = (event) => {
         <input type="search" className='searchTerm' placeholder='Search' name="fname" autoFocus required
         onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
         <button type='submit' className='searchButton' onClick={handleSearch}>
-        { loading ? <Loading /> :
-        <FontAwesomeIcon icon={faMagnifyingGlass} />}
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
        </button>
        </div>
     </div>
     <div className="search-right">
 <div className="card-list-search">
-  {loading ? (<Loading />) : searchResults.length > 0 ? (
+  {loading ? <Loading /> : searchResults.length > 0 ? (
 searchResults.map((card) => (
  <Link to={`/player/${card.id}`} className="card" key={card.id}>
   <img src={
