@@ -3,10 +3,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './Search.css'
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 
 const Search = () => {
 const [inputValue, setInputValue] = useState('');
+const [loading, setLoading] = useState(false);
 const [searchQuery, setSearchQuery] = useState('');
 const [searchResults, setSearchResults] = useState([])
 const handleKeyDown = (event) => {
@@ -24,10 +26,12 @@ const handleKeyDown = (event) => {
       }
     };
     if(searchQuery) {
+      setLoading(true);
       fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`, options)
         .then(res => res.json())
         .then(res => setSearchResults(res.results))
         .catch(err => console.error(err));
+        setLoading(false)
       }
 }, [searchQuery]) //every time search value changes it reruns
   
@@ -39,31 +43,37 @@ const handleKeyDown = (event) => {
     <div className='search-left'>
        <div className="searchbar">
         <input type="search" className='searchTerm' placeholder='Search' name="fname" autoFocus required
-        onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}/>
+        onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
         <button type='submit' className='searchButton' onClick={handleSearch}>
+        { loading ? <Loading /> : null}
         <FontAwesomeIcon icon={faMagnifyingGlass} />
        </button>
        </div>
     </div>
     <div className="search-right">
 <div className="card-list-search">
-{searchResults ? {searchResults.map((card, index) => {
-          return (
-         <Link to={`/player/${card.id}`} className="card" key={index}>
-          <img src={`https://image.tmdb.org/t/p/w500`+card.backdrop_path || `https://image.tmdb.org/t/p/w500`+card.poster_path} alt="" />
-          <p>{card.original_title}</p>
-         </Link>
-          )
-        })} : 
-        return (
-          <h1>No Results for {searchQuery}</h1>
-        )}
+  {searchResults.length > 0 ? (
+searchResults.map((card) => (
+ 
+ <Link to={`/player/${card.id}`} className="card" key={card.id}>
+  <img src={
+                    card.backdrop_path
+                      ? `https://image.tmdb.org/t/p/w500${card.backdrop_path}`
+                      : card.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${card.poster_path}`
+                      : "https://via.placeholder.com/500x281?text=No+Image"
+                  }></img>
+  <p>{card.original_title}</p>
+ </Link>
+))
+  ) : (
+    <h1>No results for "{searchQuery}"</h1>
+  )}
+
 
 </div>
     </div>
     </div>
-   
-  )
-}
+)}
 
 export default Search

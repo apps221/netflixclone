@@ -27,6 +27,7 @@
     border-right: 2px dotted gray ;
 }
 .search-right {
+    padding-left: 10px;
     width: 70%;
     display: flex;
     flex-wrap: wrap;
@@ -45,11 +46,19 @@
 }
 .card-list-search .card{
     position: relative;
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
 }
 .card-list-search img{
-    width: 240px;
+
     border-radius: 4px;
     cursor: pointer;
+    height: 100%;
 }
 .card-list-search {
     display: flex;
