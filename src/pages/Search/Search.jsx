@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './Search.css'
-import TitleCard from '../../components/TitleCards/TitleCard';
 import { Link } from 'react-router-dom';
 
 
@@ -49,15 +48,19 @@ const Search = () => {
        </div>
     </div>
     <div className="search-right">
-<div className="card-list">
-{searchResults.map((card, index) => {
+<div className="card-list-search">
+{searchResults ? {searchResults.map((card, index) => {
           return (
          <Link to={`/player/${card.id}`} className="card" key={index}>
           <img src={`https://image.tmdb.org/t/p/w500`+card.backdrop_path || `https://image.tmdb.org/t/p/w500`+card.poster_path} alt="" />
           <p>{card.original_title}</p>
          </Link>
           )
-        })}
+        })} : 
+        return (
+          <h1>No Results for {search}</h1>
+        )}
+
 </div>
     </div>
     </div>
