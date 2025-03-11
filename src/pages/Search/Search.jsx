@@ -46,7 +46,7 @@ const handleKeyDown = (event) => {
     const handleSearch = async () => {
     setSearchQuery(inputValue)
     }
-  return (
+  return ( 
     <div className="search">
     <div className='search-left'>
        <div className="searchbar">
