@@ -29,19 +29,11 @@ const Search = () => {
   
     const handleSearch = async () => {
     if(search) {
-    fetch(`https://api.themoviedb.org/3/search/keyword?query=${search}&page=1`, options)
-    .then(res => res.json())
-    .then(res => setSearchResults(res.results))
-    .catch(err => console.error(err));
+      fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=1`, options)
+        .then(res => res.json())
+        .then(res => setSearchResults(res))
+        .catch(err => console.error(err));
       }
-      searchResults.map((item) => {
-       let id = item.id;
-        fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-  .then(res => res.json())
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
-  <TitleCard />
-      })
     }
   return (
     <div className="search">
