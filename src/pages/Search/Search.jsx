@@ -4,6 +4,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './Search.css'
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import back_arrow_icon from '../../assets/assets/back_arrow_icon.png'
 
 
 const Search = () => {
@@ -50,6 +51,7 @@ const handleKeyDown = (event) => {
   return ( 
     <div className="search">
     <div className='search-left'>
+    <Link to='/'><img src={back_arrow_icon} alt="" /></Link>
        <div className="searchbar">
         <input type="search" className='searchTerm' placeholder='Search' name="fname" autoFocus required
         onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
