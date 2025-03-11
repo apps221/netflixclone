@@ -41,7 +41,7 @@ const handleKeyDown = (event) => {
           console.error(err);
           setLoading(false);
         });
-      }, 5000)
+      }, 2000)
       }
 }, [searchQuery]) //every time search value changes it reruns
   
