@@ -5,8 +5,17 @@ const Loading = () => {
 
     return (
         <div className="skeleton-wrapper">
-        <div className="search-half"></div>
+        <div className="search-half">
+        </div>
         <div className="grid">
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
+      <div className="skeleton-card"></div>
       <div className="skeleton-card"></div>
       <div className="skeleton-card"></div>
       <div className="skeleton-card"></div>
