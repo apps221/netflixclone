@@ -91,6 +91,7 @@ padding-top: 30px;
         padding-right: 0; 
         margin-left: 5px;
         border: none;
+        width: 100%;
     }
     .search {
         display: flex;
@@ -99,12 +100,19 @@ padding-top: 30px;
         margin: auto center;
     
     }
-.searchbar {
-    width: 200%;
-}
 
     .card-list-search {
         display: flex;
         justify-content: center;
+        gap: 20px;
+    }
+    .card-list-search img {
+        width: 100%;
+    }
+    .card-list-search .card {
+        width: 200px;
+    }
+    .card-list-search .card p{
+       object-fit: contain;
     }
 }
