@@ -76,3 +76,35 @@
 .card-list-search h1 {
 padding-top: 30px;
 }
+@media (max-width: 1024px) {
+    .search-left img {
+        width: 50px;
+        height: 50px;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 800px) {
+    .search-left img {
+        display: none;
+    }
+    .search-left {
+        padding-right: 0; 
+        margin-left: 5px;
+        border: none;
+    }
+    .search {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto center;
+    
+    }
+.searchbar {
+    width: 200%;
+}
+
+    .card-list-search {
+        display: flex;
+        justify-content: center;
+    }
+}
