@@ -26,6 +26,7 @@
     display: flex;
     gap: 10px;
     margin-bottom: 50px;
+   
 }
 .hero-btns .btn img{
     width: 25px;
@@ -49,6 +50,7 @@
 }
 .hero-btns .btn:hover{
     background: #ffffffbf;
+    cursor: not-allowed;
 }
 .hero-btns .btn.dark-btn:hover{
     background: #6d6d6e66;
